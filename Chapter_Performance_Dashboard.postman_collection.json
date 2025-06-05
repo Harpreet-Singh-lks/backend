@@ -1,0 +1,185 @@
+{
+    "info": {
+      "name": "Chapter Performance Dashboard - Real Data",
+      "description": "Updated collection with real Physics, Chemistry, and Mathematics chapter data from JEE/NEET preparation.\n\n## Real Data Features\n- 150+ actual chapters from Physics, Chemistry, and Mathematics\n- Year-wise question analysis (2019-2025)\n- Actual performance metrics\n- Real weak chapter identification\n- Subject-wise unit organization\n\n## Data Statistics\n- **Physics**: 33 chapters (Class 11 & 12)\n- **Chemistry**: 47 chapters (Class 11 & 12)\n- **Mathematics**: 70+ chapters (Class 11 & 12)\n- **Weak Chapters**: Chapters with low performance metrics\n- **Year-wise Data**: Question count from 2019-2025",
+      "version": "2.0.0",
+      "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "variable": [
+      {
+        "key": "baseUrl",
+        "value": "http://localhost:3000/api/v1",
+        "type": "string"
+      },
+      {
+        "key": "authToken",
+        "value": "",
+        "type": "string"
+      }
+    ],
+    "item": [
+      {
+        "name": "Real Data Examples",
+        "item": [
+          {
+            "name": "Physics - Class 11 Chapters",
+            "request": {
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "{{baseUrl}}/chapters?subject=Physics&class=11&limit=20",
+                "host": ["{{baseUrl}}"],
+                "path": ["chapters"],
+                "query": [
+                  {"key": "subject", "value": "Physics"},
+                  {"key": "class", "value": "11"},
+                  {"key": "limit", "value": "20"}
+                ]
+              },
+              "description": "Get all Class 11 Physics chapters including:\n- Mechanics (Units, Motion, Laws of Motion, etc.)\n- Thermodynamics (Thermal Properties, Kinetic Theory)\n- Waves and Oscillations\n\n**Expected Results**: ~16 chapters covering all major Physics topics for Class 11"
+            }
+          },
+          {
+            "name": "Chemistry - Organic Chemistry Chapters",
+            "request": {
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "{{baseUrl}}/chapters?subject=Chemistry&unit=3",
+                "host": ["{{baseUrl}}"],
+                "path": ["chapters"],
+                "query": [
+                  {"key": "subject", "value": "Chemistry"},
+                  {"key": "unit", "value": "3", "description": "Organic Chemistry unit"}
+                ]
+              },
+              "description": "Get Organic Chemistry chapters including:\n- General Organic Chemistry\n- Hydrocarbons\n- Alcohols, Phenols and Ethers\n- Aldehydes and Ketones\n- Carboxylic Acids\n- Amines and Biomolecules"
+            }
+          },
+          {
+            "name": "Mathematics - Calculus Chapters",
+            "request": {
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "{{baseUrl}}/chapters?subject=Mathematics&unit=4&sort=-metadata.totalQuestions",
+                "host": ["{{baseUrl}}"],
+                "path": ["chapters"],
+                "query": [
+                  {"key": "subject", "value": "Mathematics"},
+                  {"key": "unit", "value": "4", "description": "Calculus unit"},
+                  {"key": "sort", "value": "-metadata.totalQuestions", "description": "Sort by question frequency"}
+                ]
+              },
+              "description": "Get Calculus chapters sorted by question frequency:\n- Limits and Continuity\n- Differentiation\n- Applications of Derivatives\n- Integration\n- Differential Equations"
+            }
+          },
+          {
+            "name": "Weak Chapters - High Priority",
+            "request": {
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "{{baseUrl}}/chapters?weakChapters=true&status=not-started&sort=-metadata.totalQuestions",
+                "host": ["{{baseUrl}}"],
+                "path": ["chapters"],
+                "query": [
+                  {"key": "weakChapters", "value": "true"},
+                  {"key": "status", "value": "not-started"},
+                  {"key": "sort", "value": "-metadata.totalQuestions"}
+                ]
+              },
+              "description": "Get weak chapters that haven't been started yet, sorted by question frequency. These are high-priority chapters that need immediate attention."
+            }
+          },
+          {
+            "name": "JEE Main Focus - High Question Frequency",
+            "request": {
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "{{baseUrl}}/chapters?class=12&difficulty=medium&sort=-metadata.totalQuestions&limit=10",
+                "host": ["{{baseUrl}}"],
+                "path": ["chapters"],
+                "query": [
+                  {"key": "class", "value": "12"},
+                  {"key": "difficulty", "value": "medium"},
+                  {"key": "sort", "value": "-metadata.totalQuestions"},
+                  {"key": "limit", "value": "10"}
+                ]
+              },
+              "description": "Get top 10 Class 12 chapters with highest question frequency - ideal for JEE Main preparation focus."
+            }
+          },
+          {
+            "name": "Performance Analytics - Completed Chapters",
+            "request": {
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "{{baseUrl}}/chapters?status=completed&sort=-metadata.averageScore",
+                "host": ["{{baseUrl}}"],
+                "path": ["chapters"],
+                "query": [
+                  {"key": "status", "value": "completed"},
+                  {"key": "sort", "value": "-metadata.averageScore"}
+                ]
+              },
+              "description": "Get completed chapters sorted by performance score. Shows chapters where student performed best."
+            }
+          }
+        ]
+      },
+      {
+        "name": "Upload Real Data",
+        "item": [
+          {
+            "name": "Upload Transformed Chapters",
+            "request": {
+              "method": "POST",
+              "header": [
+                {"key": "Authorization", "value": "Bearer {{authToken}}"}
+              ],
+              "body": {
+                "mode": "formdata",
+                "formdata": [
+                  {
+                    "key": "file",
+                    "type": "file",
+                    "src": "transformed-chapters.json",
+                    "description": "Upload the transformed real chapter data"
+                  }
+                ]
+              },
+              "url": {
+                "raw": "{{baseUrl}}/chapters/upload",
+                "host": ["{{baseUrl}}"],
+                "path": ["chapters", "upload"]
+              },
+              "description": "Upload the complete transformed dataset with 150+ real chapters.\n\n**File**: Use `transformed-chapters.json` generated by the transform script.\n\n**Expected**: All chapters should upload successfully with proper validation."
+            }
+          },
+          {
+            "name": "Create Sample Physics Chapter",
+            "request": {
+              "method": "POST",
+              "header": [
+                {"key": "Content-Type", "value": "application/json"},
+                {"key": "Authorization", "value": "Bearer {{authToken}}"}
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\n  \"title\": \"Electromagnetic Waves\",\n  \"class\": \"12\",\n  \"unit\": 7,\n  \"subject\": \"Physics\",\n  \"status\": \"in-progress\",\n  \"difficulty\": \"medium\",\n  \"weakChapters\": false,\n  \"description\": \"Comprehensive study of Electromagnetic Waves covering important concepts and problem-solving techniques. This chapter has appeared in 41 questions over the years 2019-2025.\",\n  \"topics\": [\n    \"Maxwell's Equations\",\n    \"Wave Propagation\",\n    \"Electromagnetic Spectrum\",\n    \"Energy and Momentum\"\n  ],\n  \"estimatedDuration\": 120,\n  \"completionPercentage\": 68,\n  \"metadata\": {\n    \"totalQuestions\": 41,\n    \"correctAnswers\": 28,\n    \"averageScore\": 68,\n    \"yearWiseQuestionCount\": {\n      \"2019\": 10,\n      \"2020\": 6,\n      \"2021\": 0,\n      \"2022\": 2,\n      \"2023\": 5,\n      \"2024\": 9,\n      \"2025\": 9\n    }\n  }\n}"
+              },
+              "url": {
+                "raw": "{{baseUrl}}/chapters",
+                "host": ["{{baseUrl}}"],
+                "path": ["chapters"]
+              },
+              "description": "Create a Physics chapter with real exam data including year-wise question analysis."
+            }
+          }
+        ]
+      }
+    ]
+  }
