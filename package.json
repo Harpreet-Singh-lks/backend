@@ -1,28 +1,44 @@
 {
-  "name": "chapter_performance_dashboard",
+  "name": "chapter-performance-dashboard",
   "version": "1.0.0",
-  "description": "",
+  "description": "RESTful API backend for Chapter Performance Dashboard with real JEE/NEET data",
   "main": "server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+  "engines": {
+    "node": "18.x",
+    "npm": "9.x"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "build": "echo 'No build step required for Node.js app'",
+    "test": "NODE_ENV=test jest --detectOpenHandles",
+    "seed": "node -e \"require('./src/utils/seeders').runSeeders()\""
+  },
+  "keywords": ["api", "dashboard", "chapters", "performance", "education", "jee", "neet", "physics", "chemistry", "mathematics"],
+  "author": "Harpreet Singh",
+  "license": "MIT",
   "dependencies": {
-    "bcryptjs": "^3.0.2",
+    "express": "^4.18.2",
+    "mongoose": "^7.5.0",
+    "redis": "^4.6.7",
+    "multer": "^1.4.5-lts.1",
+    "express-rate-limit": "^6.8.1",
+    "rate-limit-redis": "^3.0.1",
+    "joi": "^17.9.2",
+    "jsonwebtoken": "^9.0.1",
+    "bcryptjs": "^2.4.3",
+    "helmet": "^7.0.0",
     "cors": "^2.8.5",
-    "dotenv": "^16.5.0",
-    "express": "^4.21.2",
-    "express-rate-limit": "^7.5.0",
-    "helmet": "^8.1.0",
-    "joi": "^17.13.3",
-    "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.15.1",
-    "multer": "^2.0.1",
-    "rate-limit-redis": "^4.2.1",
-    "redis": "^5.5.5"
+    "dotenv": "^16.3.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1",
+    "jest": "^29.6.2",
+    "supertest": "^6.3.3"
   }
 }
+password - UiSRIZyQKIirhvaI
+
+mongodb+srv://chapter_admin:<db_password>@chapter-dashboard-clust.nv0yhaz.mongodb.net/?retryWrites=true&w=majority&appName=chapter-dashboard-cluster
+
+mongodb+srv://chapter_admin:UiSRIZyQKIirhvaI@chapter-dashboard-clust.nv0yhaz.mongodb.net/?retryWrites=true&w=majority&appName=chapter-dashboard-cluster
