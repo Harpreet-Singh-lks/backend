@@ -37,8 +37,5 @@
     "supertest": "^6.3.3"
   }
 }
-password - UiSRIZyQKIirhvaI
-
-mongodb+srv://chapter_admin:<db_password>@chapter-dashboard-clust.nv0yhaz.mongodb.net/?retryWrites=true&w=majority&appName=chapter-dashboard-cluster
 
 mongodb+srv://chapter_admin:UiSRIZyQKIirhvaI@chapter-dashboard-clust.nv0yhaz.mongodb.net/?retryWrites=true&w=majority&appName=chapter-dashboard-cluster
