@@ -1,3 +1,10 @@
+console.log('🔍 Environment Debug:');
+console.log(`   NODE_ENV: ${process.env.NODE_ENV}`);
+console.log(`   PORT: ${process.env.PORT}`);
+console.log(`   MONGODB_URI exists: ${!!process.env.MONGODB_URI}`);
+console.log(`   MONGODB_URI starts with mongodb+srv: ${process.env.MONGODB_URI?.startsWith('mongodb+srv://') || false}`);
+console.log(`   JWT_SECRET exists: ${!!process.env.JWT_SECRET}`);
+
 const app = require('./src/app');
 const config = require('./src/config/config');
 const database = require('./src/utils/database');
@@ -13,6 +20,10 @@ process.on('uncaughtException', (err) => {
 // Connect to database and start server
 async function startServer() {
   try {
+    console.log('🚀 Starting Chapter Performance Dashboard API...');
+    console.log(`📊 Environment: ${config.nodeEnv}`);
+    console.log(`🔌 Attempting database connection...`);
+    
     // Connect to MongoDB
     await database.connect();
     console.log('✅ Database connected successfully');
@@ -46,6 +57,12 @@ async function startServer() {
 
   } catch (error) {
     console.error('❌ Failed to start server:', error);
+    console.error('❌ Error details:', {
+      name: error.name,
+      message: error.message,
+      code: error.code,
+      reason: error.reason
+    });
     process.exit(1);
   }
 }
